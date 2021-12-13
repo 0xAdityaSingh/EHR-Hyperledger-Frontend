@@ -10,15 +10,21 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   TextEditingController idcontroller = TextEditingController();
-  String selectedValue = "Patient";
+  String selectedValue = "Doctor";
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> roles = [
-      DropdownMenuItem(child: Text("Admin"), value: "Admin"),
-      DropdownMenuItem(child: Text("Patient"), value: "Patient"),
-      DropdownMenuItem(child: Text("Doctor"), value: "Doctor"),
-      DropdownMenuItem(child: Text("Pharmacy"), value: "Pharmacy"),
-      DropdownMenuItem(child: Text("Diagnostic Lab"), value: "Diagnostic Lab"),
-      DropdownMenuItem(child: Text("Insurance"), value: "Insurance"),
+      DropdownMenuItem(
+          child: Text("Doctor", style: TextStyle(color: Colors.black)),
+          value: "Doctor"),
+      DropdownMenuItem(
+          child: Text("Pharmacy", style: TextStyle(color: Colors.black)),
+          value: "Pharmacy"),
+      DropdownMenuItem(
+          child: Text("Diagnostic Lab", style: TextStyle(color: Colors.black)),
+          value: "Diagnostic Lab"),
+      DropdownMenuItem(
+          child: Text("Insurance", style: TextStyle(color: Colors.black)),
+          value: "Insurance"),
     ];
     return roles;
   }

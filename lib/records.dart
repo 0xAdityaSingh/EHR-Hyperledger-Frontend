@@ -10,6 +10,56 @@ class RecordsPage extends StatefulWidget {
 }
 
 class _RecordsPageState extends State<RecordsPage> {
+  TextEditingController _textFieldController = TextEditingController();
+
+  _displayDialogGrant(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Grant Access to ID'),
+            content: TextField(
+              controller: _textFieldController,
+              textInputAction: TextInputAction.go,
+              // keyboardType: TextInputType.numberWithOptions(),
+              decoration: InputDecoration(hintText: "ID"),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Grant'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  _displayDialogRevoke(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Revoke Access from ID'),
+            content: TextField(
+              controller: _textFieldController,
+              textInputAction: TextInputAction.go,
+              // keyboardType: TextInputType.,
+              decoration: InputDecoration(hintText: "ID"),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('Revoke'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,27 +83,37 @@ class _RecordsPageState extends State<RecordsPage> {
                   Row(
                     children: [
                       Expanded(
-                          child: Card(
-                        color: Colors.green,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-                          child: Center(
-                              child: Text(
-                            "Grant",
-                            style: TextStyle(fontSize: 15.0),
-                          )),
+                          child: GestureDetector(
+                        onTap: () {
+                          _displayDialogGrant(context);
+                        },
+                        child: Card(
+                          color: Colors.green,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                            child: Center(
+                                child: Text(
+                              "Grant",
+                              style: TextStyle(fontSize: 15.0),
+                            )),
+                          ),
                         ),
                       )),
                       Expanded(
-                          child: Card(
-                        color: Colors.red.shade200,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
-                          child: Center(
-                              child: Text(
-                            "Revoke",
-                            style: TextStyle(fontSize: 15.0),
-                          )),
+                          child: GestureDetector(
+                        onTap: () {
+                          _displayDialogRevoke(context);
+                        },
+                        child: Card(
+                          color: Colors.red.shade200,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+                            child: Center(
+                                child: Text(
+                              "Revoke",
+                              style: TextStyle(fontSize: 15.0),
+                            )),
+                          ),
                         ),
                       ))
                     ],
